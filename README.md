@@ -1,3 +1,0 @@
-- dotfiles
-- bash scripts for software installation
-- Ubuntu 18.04
