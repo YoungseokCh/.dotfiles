@@ -5,9 +5,9 @@ filetype plugin indent on
 set ttymouse=xterm2
 set mouse=a
 set cursorline
-
+set enc=utf-8
+set fillchars=vert:\│ 
 let g:zenburn_high_Contrast=1
-" colorscheme zenburn
 let g:solarized_termcolors=256
 let my_colorschemes = ['dracula', 'zenburn', 'solarized']
 let random_colorscheme = my_colorschemes[rand() % (len(my_colorschemes))]
