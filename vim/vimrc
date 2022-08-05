@@ -4,9 +4,22 @@ filetype plugin indent on
 
 set ttymouse=xterm2
 set mouse=a
-set cursorline
+" set cursorline
 set enc=utf-8
 set fillchars=vert:\│ 
+
+" Undofile setup
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
+
+" let g:coqtail_auto_set_proof_diffs = 'on'
+
 let g:zenburn_high_Contrast=1
 let g:solarized_termcolors=256
 let my_colorschemes = ['dracula', 'zenburn', 'solarized']
