@@ -12,6 +12,19 @@ fi
 
 ZSH_THEME="dracula"
 
+# Download Znap, if it's not there yet.
+[[ -f ~/Git/zsh-snap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/Git/zsh-snap
+
+source ~/Git/zsh-snap/znap.zsh  # Start Znap
+
+# `znap prompt` makes your prompt visible in just 15-40ms!
+#znap prompt sindresorhus/pure
+
+#znap source marlonrichert/zsh-autocomplete
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -22,6 +35,3 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-if [ $(command -v opam | wc -l) -gt 0 ] ; then
-  eval `opam config env`
-fi

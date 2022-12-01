@@ -1,0 +1,29 @@
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# OPAM configuration
+if [ -e "$HOME/.opam/opam-init/init.sh" ] ; then
+    . /home/youngseok/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+fi
+
+if [ $(command -v opam | wc -l) -gt 0 ] ; then
+  eval `opam config env`
+fi
+
+# GO
+if [ -d "$HOME/.go" ] ; then
+    PATH="$HOME/.go/bin:/usr/lib/go-1.10/bin:$PATH"
+fi
+
+# Rust
+if [ -e "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi
+
