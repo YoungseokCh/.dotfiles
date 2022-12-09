@@ -1,0 +1,1 @@
+- [Windows Terminal Dracula Theme](https://github.com/dracula/windows-terminal)
