@@ -1,1 +1,1 @@
-- [Windows Terminal Dracula Theme](https://github.com/dracula/windows-terminal)
+- [Windows Terminal Dracula Theme Json](https://github.com/dracula/windows-terminal/blob/master/dracula.json)
