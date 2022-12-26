@@ -1,0 +1,1 @@
+- [Windows Terminal Dracula Theme Json](https://github.com/dracula/windows-terminal/blob/master/dracula.json)
