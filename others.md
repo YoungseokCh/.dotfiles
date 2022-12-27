@@ -3,6 +3,7 @@
 
 # Mac
 - [Karabiner](https://karabiner-elements.pqrs.org)
+- [Rectangle](https://rectangleapp.com)
 
 # Common
 - [Visual Studio Code](https://github.com/AFLplusplus/AFLplusplus/blob/stable/docs/fuzzing_in_depth.md#configure)
