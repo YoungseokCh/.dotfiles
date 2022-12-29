@@ -9,3 +9,4 @@
 # Common
 - [Visual Studio Code](https://github.com/AFLplusplus/AFLplusplus/blob/stable/docs/fuzzing_in_depth.md#configure)
 - [Fira Code](https://github.com/tonsky/FiraCode)
+- [Powerline Font](https://github.com/powerline/fonts)
