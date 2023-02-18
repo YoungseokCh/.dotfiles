@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! type tmux &> /dev/null; then
+if ! [ command -v tmux &> /dev/null ]; then
   sudo apt install tmux
 fi
 
