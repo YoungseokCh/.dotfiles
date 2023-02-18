@@ -1,6 +1,7 @@
-#!/bin/sh
-if ! type zsh &> /dev/null; then
-  sudo apt install -y zsh
+#!/bin/bash
+
+if ! [ command -v zsh &> /dev/null ]; then
+  sudo apt install zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
