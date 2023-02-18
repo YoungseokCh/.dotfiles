@@ -13,7 +13,7 @@ if [ -e "$HOME/.opam/opam-init/init.sh" ] ; then
     . /home/youngseok/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 fi
 
-if [ $(command -v opam | wc -l) -gt 0 ] ; then
+if [ -e $HOME/.opam/config ] ; then
   eval `opam config env`
 fi
 
