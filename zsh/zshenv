@@ -16,7 +16,7 @@ fi
 if [ -e $HOME/.opam/config ] ; then
   eval `opam config env`
 fi
-1
+
 # GO
 if [ -d "$HOME/.go" ] ; then
     PATH="$HOME/.go/bin:/usr/lib/go-1.10/bin:$PATH"
