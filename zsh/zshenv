@@ -45,3 +45,9 @@ code () {
 	export VSCODE_IPC_HOOK_CLI=${socket} 
 	${script} $*
 }
+
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+
