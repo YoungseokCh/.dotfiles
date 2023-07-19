@@ -12,6 +12,13 @@ if [ -z "$(command -v zsh)" ]; then
   exit 1
 fi
 
+# Check if default shell is zsh
+if [[ ! "$SHELL" =~ .*zsh$ ]]; then
+  echo "Please set zsh as your default shell - chsh -s $(which zsh)"
+  exit 1
+fi
+
+
 # Check if oh-my-zsh installed
 if [ -d "$HOME/.oh-my-zsh" ]; then
   echo "You already have oh-my-zsh installed."
@@ -45,11 +52,3 @@ else
   ln -s $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
 fi
 
-
-
-
-
-
-# else
-#   echo "Replacing .zshrc file..."
-#   ln -s $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
