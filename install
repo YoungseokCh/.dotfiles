@@ -12,6 +12,12 @@ if [ -z "$(command -v zsh)" ]; then
   exit 1
 fi
 
+# Check if tmux installed
+if [ -z "$(command -v tmux)" ]; then
+  echo "Please install tmux first"
+  exit 1
+fi
+
 # Check if default shell is zsh
 if [[ ! "$SHELL" =~ .*zsh$ ]]; then
   echo "Please set zsh as your default shell - chsh -s $(which zsh)"
@@ -40,7 +46,6 @@ fi
 if [ -f "$HOME/.zshrc" ]; then
   echo "You already have .zshrc file."
   # Ask if user wants to replace it
-
   read -p "Do you want to replace it? [y/n] " -n 1 -r REPLY
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -52,3 +57,27 @@ else
   ln -s $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
 fi
 
+# Check if .tmux.conf exists
+if [ -f "$HOME/.tmux.conf" ]; then
+  echo "You already have .tmux.conf file."
+  # Ask if user wants to replace it
+  read -p "Do you want to replace it? [y/n] " -n 1 -r REPLY
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Replacing .tmux.conf file..."
+    ln -sf $HOME/.dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
+    echo "Press prefix + I to install plugins"
+  fi
+else
+  echo "Installing .tmux.conf file..."
+  ln -s $HOME/.dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
+  echo "Press prefix + I to install plugins"
+fi
+
+# Check if tpm exists
+if [ -d "$HOME/.tmux/plugins/tpm" ]; then
+  echo "You already have tpm installed."
+else
+  echo "Installing tpm..."
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
