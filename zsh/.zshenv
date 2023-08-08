@@ -31,6 +31,11 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# If .env exists in $HOME, source it
+if [ -f "$HOME/.env" ] ; then
+    . "$HOME/.env"
+fi
+
 # Visual Studio Code
 code () {
 	# local script=$(echo ~/.vscode-server/bin/*/bin/code(*ocNY1)) 
