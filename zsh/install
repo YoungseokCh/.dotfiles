@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Check if zsh installed
+if [ -z "$(command -v zsh)" ]; then
+  echo "Please install zsh first"
+  exit 1
+fi
+
+# Check if default shell is zsh
+if [[ ! "$SHELL" =~ .*zsh$ ]]; then
+  echo "Please set zsh as your default shell - chsh -s $(which zsh)"
+  exit 1
+fi
+
+# Check if oh-my-zsh installed
+if [ -d "$HOME/.oh-my-zsh" ]; then
+  echo "You already have oh-my-zsh installed."
+# Otherwise, install oh-my-zsh
+else
+  echo "Installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+# Install powerlevel10k theme
+if [ -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
+  echo "You already have powerlevel10k theme installed."
+else
+  echo "Installing powerlevel10k theme..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
+# Check if .zshrc exists
+if [ -f "$HOME/.zshrc" ]; then
+  echo "You already have .zshrc file."
+  # Ask if user wants to replace it
+  read -p "Do you want to replace it? [y/n] " -n 1 -r REPLY
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Replacing .zshrc file..."
+    ln -sf $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
+  fi
+else
+  echo "Installing .zshrc file..."
+  ln -s $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
+fi
+
+# Check if .zshenv exists
+if [ -f "$HOME/.zshenv" ]; then
+  echo "You already have .zshenv file."
+  # Ask if user wants to replace it
+  read -p "Do you want to replace it? [y/n] " -n 1 -r REPLY
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Replacing .zshenv file..."
+    ln -sf $HOME/.dotfiles/zsh/.zshenv $HOME/.zshenv
+  fi
+else
+  echo "Installing .zshenv file..."
+  ln -s $HOME/.dotfiles/zsh/.zshenv $HOME/.zshenv
+fi
