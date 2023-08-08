@@ -31,7 +31,7 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-
+# Visual Studio Code
 code () {
 	# local script=$(echo ~/.vscode-server/bin/*/bin/code(*ocNY1)) 
     local script=$(echo ~/.vscode-server/bin/*/bin/remote-cli/code(*oc[1]N))
@@ -48,4 +48,14 @@ code () {
 	fi
 	export VSCODE_IPC_HOOK_CLI=${socket} 
 	${script} $*
+}
+
+# Function for downloading google drive file
+function gdown(){
+  # Check if argument is provided
+  if [ -z "$2" ]; then
+    echo "usage: gdown <id> <filename>"
+    CONFIRM=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate "https://docs.google.com/uc?export=download&id=$1" -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')
+    wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$CONFIRM&id=$1" -O $2
+    rm -rf /tmp/cookies.txt
 }
