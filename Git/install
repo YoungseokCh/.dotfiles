@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Check if git installed
+if [ -z "$(command -v git)" ]; then
+  echo "Please install git first"
+  exit 1
+fi
+
+# Reconfigure git is false by default
+RECONFIGURE_GIT=false
+
+# Check if .gitconfig exist
+if [ -f "$HOME/.gitconfig" ]; then
+  echo "You already have .gitconfig file."
+  # Ask if user wants to replace it
+  read -p "Do you want to reconfigure it? [y/n] " -n 1 -r REPLY
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    RECONFIGURE_GIT=true
+  fi
+else
+  RECONFIGURE_GIT=true
+fi
+
+# Reconfigure git
+if [ "$RECONFIGURE_GIT" = true ]; then
+  echo "Reconfiguring git..."
+  # Set default branch name to main
+  git config --global init.defaultBranch main
+  # Set default editor as vim
+  git config --global core.editor vim
+  # Set global user email and name
+  read -p "Enter your email: " email
+  read -p "Enter your name: " name
+
+  git config --global user.email $email
+  git config --global user.name $name
+fi

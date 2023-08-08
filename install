@@ -6,6 +6,9 @@ if [ ! -d "$HOME/.dotfiles" ]; then
   exit 1
 fi
 
+# Run install script for git
+source $HOME/.dotfiles/Git/install
+
 # Check if zsh installed
 if [ -z "$(command -v zsh)" ]; then
   echo "Please install zsh first"
