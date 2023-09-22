@@ -36,25 +36,6 @@ if [ -f "$HOME/.env" ] ; then
     . "$HOME/.env"
 fi
 
-# Visual Studio Code
-code () {
-	# local script=$(echo ~/.vscode-server/bin/*/bin/code(*ocNY1)) 
-    local script=$(echo ~/.vscode-server/bin/*/bin/remote-cli/code(*oc[1]N))
-	if [[ -z ${script} ]]
-	then
-		echo "VSCode remote script not found"
-		exit 1
-	fi
-    local socket=$(echo /run/user/$UID/vscode-ipc-*.sock(=ocNY1)) 
-	if [[ -z ${socket} ]]
-	then
-		echo "VSCode IPC socket not found"
-		exit 1
-	fi
-	export VSCODE_IPC_HOOK_CLI=${socket} 
-	${script} $*
-}
-
 # Function for downloading google drive file
 gdown () {
     # Check if argument is provided
@@ -69,10 +50,10 @@ gdown () {
 
 # Function for remote vscode popup
 rcode() {
-    # Check if argument is provided
-    if [ -z "$2" ]; then
-        echo "usage: rcode <ssh-remote> <filename>"
-    fi
-
     code --remote "ssh-remote+$1" "$2"
+}
+
+# Function for git root
+gitroot() {
+    git rev-parse --show-toplevel
 }
