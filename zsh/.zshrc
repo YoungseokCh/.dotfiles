@@ -16,7 +16,7 @@ if [ -d ~/dotfiles ]; then
       read -p "Do you want to update dotfiles? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
-        git pull origin main
+        git pull origin master
         echo "Dotfiles updated"
         source $HOME/.zshrc
         exit 0
