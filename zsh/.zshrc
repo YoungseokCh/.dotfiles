@@ -5,26 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [ -d $HOME/.dotfiles ]; then
-    cd ~/dotfiles
-    git fetch origin
-    LOCAL=$(git rev-parse HEAD)
-    REMOTE=$(git rev-parse origin/master)
-    if [ "$LOCAL" != "$REMOTE" ]; then
-      # Ask dotfile update
-      echo "Dotfiles update available"
-      read -p "Do you want to update dotfiles? (y/n) " -n 1 -r
-      echo
-      if [[ $REPLY =~ ^[Yy]$ ]]; then
-        git pull origin master
-        echo "Dotfiles updated"
-        source $HOME/.zshrc
-        exit 0
-      fi
-    fi
-    cd -
-fi
-
 # Setting for the new UTF-8 terminal support in Lion
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
