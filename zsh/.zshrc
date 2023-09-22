@@ -1,3 +1,24 @@
+if [ -d ~/dotfiles ]; then
+    cd ~/dotfiles
+    git fetch origin
+    LOCAL=$(git rev-parse HEAD)
+    REMOTE=$(git rev-parse origin/master)
+    if [ "$LOCAL" != "$REMOTE" ]; then
+      # Ask dotfile update
+      echo "Dotfiles update available"
+      read -p "Do you want to update dotfiles? (y/n) " -n 1 -r
+      echo
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        git pull origin main
+        echo "Dotfiles updated"
+        source $HOME/.zshrc
+        exit 0
+      fi
+    fi
+    cd -
+fi
+
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
