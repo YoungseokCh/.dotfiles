@@ -66,3 +66,13 @@ gdown () {
         rm -rf /tmp/cookies.txt
     fi
 }
+
+# Function for remote vscode popup
+rcode() {
+    # Check if argument is provided
+    if [ -z "$2" ]; then
+        echo "usage: rcode <ssh-remote> <filename>"
+    fi
+
+    code --remote "ssh-remote+$1" "$2"
+}
