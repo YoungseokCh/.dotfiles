@@ -69,7 +69,11 @@ gdown () {
 
 # Function for remote vscode popup
 rcode() {
-    code --remote "ssh-remote+$1" "$2"
+    if [ -z "$2" ]; then
+        code --remote "ssh-remote+$1" --new-window
+    else
+        code --remote "ssh-remote+$1" "$2"
+    fi
 }
 
 # Function for git root
