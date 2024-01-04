@@ -58,3 +58,5 @@ else
   echo "Installing .zshenv file..."
   ln -s $HOME/.dotfiles/zsh/.zshenv $HOME/.zshenv
 fi
+
+ln -s $HOME/.dotfiles/.p10k.zsh $HOME/.p10k.zsh
