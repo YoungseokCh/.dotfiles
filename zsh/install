@@ -18,7 +18,7 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
 # Otherwise, install oh-my-zsh
 else
   echo "Installing oh-my-zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 fi
 
 # Install powerlevel10k theme
@@ -27,6 +27,7 @@ if [ -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
 else
   echo "Installing powerlevel10k theme..."
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  ln -s $HOME/.dotfiles/zsh/.p10k.zsh $HOME/.p10k.zsh
 fi
 
 # Check if .zshrc exists
@@ -58,5 +59,3 @@ else
   echo "Installing .zshenv file..."
   ln -s $HOME/.dotfiles/zsh/.zshenv $HOME/.zshenv
 fi
-
-ln -s $HOME/.dotfiles/.p10k.zsh $HOME/.p10k.zsh
