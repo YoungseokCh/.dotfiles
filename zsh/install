@@ -12,24 +12,6 @@ if [[ ! "$SHELL" =~ .*zsh$ ]]; then
   exit 1
 fi
 
-# Check if oh-my-zsh installed
-if [ -d "$HOME/.oh-my-zsh" ]; then
-  echo "You already have oh-my-zsh installed."
-# Otherwise, install oh-my-zsh
-else
-  echo "Installing oh-my-zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
-fi
-
-# Install powerlevel10k theme
-if [ -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
-  echo "You already have powerlevel10k theme installed."
-else
-  echo "Installing powerlevel10k theme..."
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-  ln -s $HOME/.dotfiles/zsh/.p10k.zsh $HOME/.p10k.zsh
-fi
-
 # Check if .zshrc exists
 if [ -f "$HOME/.zshrc" ]; then
   echo "You already have .zshrc file."
