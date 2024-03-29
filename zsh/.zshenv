@@ -80,3 +80,15 @@ rcode() {
 gitroot() {
     git rev-parse --show-toplevel
 }
+
+# sudo parallel ssh
+sudo-parallel-ssh() {
+    # Get password as $password
+    echo -n "Enter your password: "
+    read -s password
+    echo
+    echo $password | parallel-ssh -x -tt -I $*
+}
+
+alias sudo-pssh=sudo-parallel-ssh
+alias pssh=parallel-ssh

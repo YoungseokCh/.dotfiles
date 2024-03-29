@@ -33,3 +33,6 @@ source $HOME/.dotfiles/zsh/install
 
 # Run install script for tmux
 source $HOME/.dotfiles/tmux/install
+
+# .hushlogin
+touch $HOME/.hushlogin
