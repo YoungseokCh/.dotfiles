@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -81,14 +83,27 @@ gitroot() {
     git rev-parse --show-toplevel
 }
 
-# sudo parallel ssh
-sudo-parallel-ssh() {
-    # Get password as $password
-    echo -n "Enter your password: "
-    read -s password
-    echo
-    echo $password | parallel-ssh -x -tt -I $*
-}
+function pssh()
+{
+    # Read options and check if "-r" option is provided
+    local r_option=0
+    local args=()
+    for i in $*; do
+        if [ $i != "-r" ]; then
+            args+=($i)
+        else
+            r_option=1
+        fi
+    done
 
-alias sudo-pssh=sudo-parallel-ssh
-alias pssh=parallel-ssh
+    if [ $r_option -eq 1 ]; then
+        # Get password as $password
+        echo -n "Enter your password: "
+        read -s password
+        echo
+        
+        echo $password | parallel-ssh -x -tt -I $args
+    else
+        parallel-ssh $*
+    fi
+}
