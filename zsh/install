@@ -12,6 +12,9 @@ if [[ ! "$SHELL" =~ .*zsh$ ]]; then
   exit 1
 fi
 
+git clone 'https://github.com/hyperupcall/autoenv' ~/.autoenv
+printf '%s\n' "source ~/.autoenv/activate.sh" >> "${ZDOTDIR:-$HOME}/.zprofile"
+
 # Check if .zshrc exists
 if [ -f "$HOME/.zshrc" ]; then
   echo "You already have .zshrc file."
