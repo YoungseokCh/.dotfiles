@@ -20,7 +20,6 @@ if [ -f "$HOME/.tmux.conf" ]; then
 else
   echo "Installing .tmux.conf file..."
   ln -s $HOME/.dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
-  echo "Press prefix + I to install plugins"
 fi
 
 # Check if tpm exists
