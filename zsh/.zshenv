@@ -21,7 +21,7 @@ fi
 
 # GO
 if [ -d "$HOME/.go" ] ; then
-    PATH="$HOME/.go/bin:/usr/lib/go-1.10/bin:$PATH"
+    PATH="$HOME/.go/bin:$PATH"
 fi
 
 # Rust
